@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PierresTreats.Controllers
 {
-  public class FlavorsController : Controllers
+  public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
 
@@ -57,7 +57,7 @@ namespace PierresTreats.Controllers
       return RedirectToAction("Index");
     }
 
-    pubilc ActionResult Delete(int id)
+    public ActionResult Delete(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);

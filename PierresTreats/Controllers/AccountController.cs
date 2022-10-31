@@ -12,10 +12,10 @@ namespace PierresTreats.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierresTreatsContext db)
+    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierresTreatsContext db)
     {
       _userManager = userManager;
-      _SignInmanager = signInManager;
+      _signInManager = signInManager;
       _db = db;
     }
 
@@ -66,7 +66,7 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> LogOff()
     {
-      await _signInManager.SingOutAsync();
+      await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
     }
   }

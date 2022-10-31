@@ -71,7 +71,7 @@ namespace PierresTreats.Controllers{
     [HttpPost]
     public ActionResult Edit(Treat treat, int FlavorId)
     {
-      if (FlavorId != -)
+      if (FlavorId != 0)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
       }
@@ -116,7 +116,7 @@ namespace PierresTreats.Controllers{
     [HttpPost]
     public ActionResult DeleteFlavor(int joinId)
     {
-      var JoinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
