@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -22,4 +22,12 @@
   </div>
   <script src="~/js/scripts.js"></script>
 </body>
-</html>
+</html> *@
+
+@{ 
+  Layout = "_Layout";
+}
+
+<h1>Welcome to Pierre's Sweet and Savory Treats!</h1>
+<p>@Html.ActionLink("See all treats", "Index", "Treats")</p> <p>@Html.ActionLink("See all Flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
