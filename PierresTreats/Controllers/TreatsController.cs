@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
-namespace PierresTreats.Controllers{
+namespace PierresTreats.Controllers
+{
   [Authorize]
   public class TreatsController : Controller 
   {
@@ -22,12 +23,21 @@ namespace PierresTreats.Controllers{
       _db = db;
     }
 
+    [AllowAnonymous]
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userTreats);
+      if (currentUser != null)
+      {
+        var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+        return View(userTreats);
+      }
+      else
+      {
+        List<Treat> model = _db.Treats.ToList();
+      return View(model);
+      }
     }
 
     public ActionResult Create()
@@ -52,6 +62,7 @@ namespace PierresTreats.Controllers{
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats
